@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://vowalten.github.io/officialhome-i-game-com-cn/sitemap.xml

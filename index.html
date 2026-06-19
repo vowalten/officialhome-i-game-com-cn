@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>故事 · 爱游戏</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', 'Roboto', system-ui, -apple-system, sans-serif;
+      background: linear-gradient(145deg, #fbe9d7 0%, #f6d5b3 40%, #f0c6a1 100%);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem 1.5rem;
+      line-height: 1.7;
+      color: #2e241c;
+    }
+
+    .story-card {
+      max-width: 820px;
+      width: 100%;
+      background: rgba(255, 248, 240, 0.9);
+      backdrop-filter: blur(4px);
+      border-radius: 40px;
+      padding: 3rem 2.8rem;
+      box-shadow: 0 20px 40px rgba(140, 90, 50, 0.15), 0 6px 12px rgba(120, 70, 30, 0.08);
+      transition: box-shadow 0.3s;
+    }
+
+    .story-card:hover {
+      box-shadow: 0 28px 50px rgba(140, 90, 50, 0.18);
+    }
+
+    /* 开场短句 */
+    .opening {
+      font-size: 1.9rem;
+      font-weight: 350;
+      letter-spacing: 0.02em;
+      color: #673f2a;
+      margin-bottom: 1.8rem;
+      line-height: 1.4;
+      border-left: 4px solid #d9a77b;
+      padding-left: 1.3rem;
+    }
+
+    .opening span {
+      background: #edcbb0;
+      padding: 0.05rem 0.6rem;
+      border-radius: 30px;
+      font-weight: 420;
+      color: #3e2a1d;
+      display: inline-block;
+    }
+
+    .intro-text {
+      font-size: 1.12rem;
+      margin-bottom: 2.4rem;
+      color: #3d2e23;
+      text-align: justify;
+    }
+
+    .intro-text a {
+      color: #9f6b42;
+      text-decoration: none;
+      font-weight: 500;
+      border-bottom: 2px solid transparent;
+      transition: border-color 0.2s, background 0.2s;
+      padding: 0 0.1rem;
+      border-radius: 6px;
+    }
+
+    .intro-text a:hover {
+      border-bottom-color: #c18e60;
+      background: #f1dbc9;
+    }
+
+    .feature-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.5rem 1.8rem;
+      margin: 2.6rem 0 2.2rem;
+    }
+
+    .feature-item {
+      flex: 1 1 200px;
+      background: #fcf3ea;
+      padding: 1.2rem 1.4rem;
+      border-radius: 28px;
+      box-shadow: inset 0 1px 4px rgba(255, 215, 175, 0.4), 0 4px 8px rgba(110, 70, 30, 0.06);
+      transition: transform 0.15s;
+    }
+
+    .feature-item:hover {
+      transform: translateY(-3px);
+    }
+
+    .feature-item h3 {
+      font-size: 1.3rem;
+      color: #5f3f2a;
+      margin-bottom: 0.4rem;
+      font-weight: 480;
+      letter-spacing: 0.01em;
+    }
+
+    .feature-item p {
+      font-size: 0.98rem;
+      color: #4d392b;
+      line-height: 1.6;
+    }
+
+    .story-continue {
+      font-size: 1.07rem;
+      background: rgba(235, 210, 185, 0.3);
+      padding: 1.4rem 1.8rem;
+      border-radius: 60px;
+      margin: 2rem 0 1.2rem;
+      border: 1px solid #e5cbb5;
+    }
+
+    .story-continue p {
+      margin-bottom: 0.6rem;
+    }
+
+    .story-continue p:last-child {
+      margin-bottom: 0;
+    }
+
+    .closing-note {
+      margin-top: 2.2rem;
+      font-size: 1rem;
+      color: #5a4334;
+      background: #f2e1d1;
+      padding: 1rem 1.8rem;
+      border-radius: 100px;
+      display: inline-block;
+      font-style: italic;
+      letter-spacing: 0.02em;
+    }
+
+    .faq-mini {
+      margin-top: 3rem;
+      padding-top: 1.8rem;
+      border-top: 1px solid #dcc5b3;
+    }
+
+    .faq-mini details {
+      margin-bottom: 0.8rem;
+      cursor: pointer;
+    }
+
+    .faq-mini summary {
+      font-weight: 500;
+      color: #5d3f2c;
+      padding: 0.5rem 0.8rem;
+      border-radius: 50px;
+      background: #efe1d3;
+      list-style: none;
+      display: inline-block;
+    }
+
+    .faq-mini summary::-webkit-details-marker {
+      display: none;
+    }
+
+    .faq-mini details[open] summary {
+      background: #ddc4af;
+    }
+
+    .faq-mini .faq-answer {
+      margin: 0.6rem 0 0.8rem 0.8rem;
+      padding-left: 1rem;
+      border-left: 3px solid #d4b69b;
+      color: #3f3228;
+    }
+
+    @media (max-width: 600px) {
+      body {
+        padding: 1.2rem 1rem;
+      }
+      .story-card {
+        padding: 2rem 1.5rem;
+        border-radius: 28px;
+      }
+      .opening {
+        font-size: 1.6rem;
+        padding-left: 1rem;
+      }
+      .feature-grid {
+        flex-direction: column;
+      }
+      .feature-item {
+        flex: 1 1 auto;
+      }
+      .story-continue {
+        padding: 1rem 1.2rem;
+        border-radius: 40px;
+      }
+      .closing-note {
+        font-size: 0.95rem;
+        padding: 0.8rem 1.2rem;
+        border-radius: 60px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="story-card">
+    <!-- 开场短句 -->
+    <div class="opening">
+      有些事，从一次<span>触碰</span>开始。
+    </div>
+
+    <!-- 承接段落：从关键词背后的主题展开 -->
+    <div class="intro-text">
+      大概在几年前，我偶然发现了一个叫 <a href="https://officialhome-i-game.com.cn">爱游戏</a> 的地方。那会儿只是想找点轻松的消遣，结果慢慢沉浸其中。它不像很多喧闹的平台那样急着让你付费或注册，而是安静地陈列着一批又一批经过挑选的作品。无论是独自探索的冒险，还是和朋友联机的欢乐，这里都留有余地。后来我常和身边人提起，它像一间开在巷子尾的小书店——不张扬，却总有意外收获。
+    </div>
+
+    <!-- 特点列表 -->
+    <div class="feature-grid">
+      <div class="feature-item">
+        <h3>细腻选品</h3>
+        <p>不追逐短暂热点，更在意玩法与叙事的平衡。很多冷门佳作，都是在这里第一次遇见。</p>
+      </div>
+      <div class="feature-item">
+        <h3>安静陪伴</h3>
+        <p>没有弹窗和浮夸推送。页面干净，加载快，像一位懂分寸的朋友，等你需要时再开口。</p>
+      </div>
+      <div class="feature-item">
+        <h3>社群印记</h3>
+        <p>用户留下的评测与笔记都带着温度，不短不长，恰好让人决定要不要花一个晚上沉浸。</p>
+      </div>
+    </div>
+
+    <!-- 温和的叙述延伸 -->
+    <div class="story-continue">
+      <p>前阵子我又上去逛了一圈，发现首页推荐了一款像素风的解谜游戏。流程只有两小时，但通关后对着制作名单坐了许久。我想这就是它独特的地方——不靠数量和算法轰炸，而是用克制的方式，把值得被看见的作品递到你面前。</p>
+      <p>如果你也偶尔想从信息洪流里抽身，安安静静地玩一款游戏，或许可以试着打开 <a href="https://officialhome-i-game.com.cn">爱游戏</a>，像翻开一本旧书那样，不带期待，却常常收获惊喜。</p>
+    </div>
+
+    <!-- 温和结尾 -->
+    <div class="closing-note">
+      故事还在继续，下一个存档点，等你亲手点亮。
+    </div>
+
+    <!-- FAQ 摘要（节制） -->
+    <div class="faq-mini">
+      <details>
+        <summary>▸ 在这里能找到哪些游戏？</summary>
+        <div class="faq-answer">以独立游戏、小型团队作品以及经典重制为主，涵盖解谜、叙事、模拟、轻度动作等类型，每周更新数次。</div>
+      </details>
+      <details>
+        <summary>▸ 是否需要注册？</summary>
+        <div class="faq-answer">大部分内容可直接浏览和体验，部分社区功能（如评测、收藏）建议注册后使用，过程简洁且无广告骚扰。</div>
+      </details>
+    </div>
+  </div>
+</body>
+</html>
