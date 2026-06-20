@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>资料索引 · 6合彩知识库</title>
+    <style>
+        /* reset & base */
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        html { font-size: 16px; scroll-behavior: smooth; }
+        body {
+            font-family: 'Georgia', 'Noto Serif SC', 'Source Han Serif SC', serif;
+            background: #faf8f5;
+            color: #2c2b28;
+            line-height: 1.75;
+            padding: 2rem 1.25rem;
+        }
+        .container {
+            max-width: 880px;
+            margin: 0 auto;
+            background: #fffcf9;
+            padding: 2.5rem 2rem 3rem;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.04), 0 8px 30px rgba(0,0,0,0.03);
+            border-radius: 18px;
+            border: 1px solid #ede8e0;
+        }
+
+        /* 目录感 / 索引卡片 */
+        .index-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.25rem;
+            margin: 2rem 0 1.5rem;
+        }
+        .index-card {
+            flex: 1 1 180px;
+            background: #f6f2ec;
+            border-left: 5px solid #b89b7a;
+            padding: 1rem 1.25rem;
+            border-radius: 8px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.02);
+            transition: background 0.2s, border-color 0.2s;
+        }
+        .index-card:hover {
+            background: #efe9e0;
+            border-left-color: #8f7255;
+        }
+        .index-card .card-label {
+            font-size: 0.8rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            color: #8e7b66;
+            margin-bottom: 0.25rem;
+            font-family: 'Segoe UI', sans-serif;
+        }
+        .index-card .card-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #3f3a33;
+            margin-bottom: 0.2rem;
+        }
+        .index-card .card-desc {
+            font-size: 0.9rem;
+            color: #5f5548;
+        }
+
+        /* 标题区 */
+        h1 {
+            font-size: 2.2rem;
+            font-weight: 500;
+            letter-spacing: 2px;
+            color: #3f362b;
+            border-bottom: 2px solid #ddd3c5;
+            padding-bottom: 0.65rem;
+            margin-bottom: 0.5rem;
+        }
+        .subhead {
+            color: #726959;
+            margin-bottom: 1.8rem;
+            font-style: italic;
+            font-size: 1.05rem;
+        }
+
+        h2 {
+            font-size: 1.4rem;
+            font-weight: 500;
+            color: #4f4539;
+            margin: 2rem 0 0.75rem;
+            padding-left: 0.6rem;
+            border-left: 4px solid #cbb29b;
+        }
+        h3 {
+            font-size: 1.15rem;
+            font-weight: 500;
+            color: #4f4539;
+            margin: 1.25rem 0 0.5rem;
+        }
+
+        p {
+            margin-bottom: 1rem;
+            text-align: justify;
+        }
+
+        /* 引用框 / 提示区块 */
+        .insight-box {
+            background: #f3ede6;
+            border-left: 6px solid #b29a81;
+            padding: 1.2rem 1.5rem;
+            margin: 1.8rem 0;
+            border-radius: 0 10px 10px 0;
+            font-size: 0.95rem;
+            color: #3d3831;
+        }
+        .insight-box strong {
+            color: #5c4b37;
+            font-weight: 600;
+        }
+
+        .tip-block {
+            background: #f0ede8;
+            padding: 1.2rem 1.5rem;
+            border-radius: 14px;
+            margin: 1.5rem 0;
+            border: 1px solid #e2d9cf;
+            box-shadow: inset 0 1px 4px rgba(0,0,0,0.02);
+        }
+        .tip-block .tip-title {
+            font-weight: 600;
+            font-size: 0.95rem;
+            color: #735f4a;
+            letter-spacing: 0.5px;
+            margin-bottom: 0.3rem;
+        }
+
+        /* 相关信息区 — 条目列表 */
+        .related-list {
+            list-style: none;
+            padding: 0;
+            margin: 1rem 0 1.8rem;
+        }
+        .related-list li {
+            padding: 0.65rem 0 0.65rem 1.5rem;
+            border-bottom: 1px dashed #e0d6ca;
+            position: relative;
+            font-size: 0.98rem;
+        }
+        .related-list li::before {
+            content: "∷";
+            position: absolute;
+            left: 0;
+            color: #b89b7a;
+            font-weight: bold;
+        }
+        .related-list li:last-child { border-bottom: none; }
+
+        /* 内联链接 */
+        a {
+            color: #7c654d;
+            text-decoration: none;
+            border-bottom: 1px dotted #b89b7a;
+            transition: border-bottom 0.2s, color 0.2s;
+        }
+        a:hover {
+            color: #4d3b2a;
+            border-bottom: 1px solid #4d3b2a;
+        }
+
+        /* FAQ 摘要 */
+        .faq-mini {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            margin: 1.5rem 0;
+        }
+        .faq-item {
+            background: #fcf9f5;
+            border: 1px solid #e5ddd3;
+            border-radius: 12px;
+            padding: 1rem 1.2rem;
+        }
+        .faq-item .q {
+            font-weight: 600;
+            color: #4f4236;
+            margin-bottom: 0.3rem;
+            font-size: 0.95rem;
+        }
+        .faq-item .a {
+            font-size: 0.9rem;
+            color: #5d5346;
+        }
+
+        hr {
+            border: none;
+            border-top: 1px solid #e4dbcf;
+            margin: 1.8rem 0;
+        }
+
+        .footnote {
+            text-align: center;
+            color: #9b8f7f;
+            font-size: 0.85rem;
+            margin-top: 2.5rem;
+            border-top: 1px solid #e9e0d6;
+            padding-top: 1.5rem;
+        }
+
+        /* 响应式 */
+        @media (max-width: 640px) {
+            body { padding: 1rem 0.75rem; }
+            .container { padding: 1.5rem 1.2rem 2rem; }
+            h1 { font-size: 1.7rem; }
+            .faq-mini { grid-template-columns: 1fr; }
+            .index-card { flex: 1 1 100%; }
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+
+    <!-- 标题区 -->
+    <h1>资料索引 · 6合彩</h1>
+    <div class="subhead">一份温和平实的知识整理 · 从信息角度理解传统游戏</div>
+
+    <!-- 目录感卡片网格 -->
+    <div class="index-grid">
+        <div class="index-card">
+            <div class="card-label">📖 背景</div>
+            <div class="card-title">缘起与演变</div>
+            <div class="card-desc">民间博弈的民俗化脉络</div>
+        </div>
+        <div class="index-card">
+            <div class="card-label">🧩 规则</div>
+            <div class="card-title">一般玩法</div>
+            <div class="card-desc">数字组合与基本逻辑</div>
+        </div>
+        <div class="index-card">
+            <div class="card-label">📊 资料</div>
+            <div class="card-title">统计与记录</div>
+            <div class="card-desc">历史数据及参考</div>
+        </div>
+        <div class="index-card">
+            <div class="card-label">⚖️ 视角</div>
+            <div class="card-title">理性看待</div>
+            <div class="card-desc">平衡认知与风险</div>
+        </div>
+    </div>
+
+    <!-- 介绍段落：从资料整理角度 -->
+    <p>
+        许多人在接触<a href="https://m-6h.com">6合彩</a>时，最先需要的是清晰、结构化的信息索引。不同于碎片化的传闻，一份系统化的知识库可以帮助新参与者快速了解背景、术语、常见编号以及玩法规则的历史由来。本页面尝试以目录式布局，将相关领域的关键点分类陈列，方便您按需查阅。
+    </p>
+    <p>
+        内容侧重资料整理与信息索引，不涉及诱导或承诺。通过不同卡片与提示区块，我们希望能为您提供一个平实、理性的参考框架。
+    </p>
+
+    <!-- 说明区：特点与场景 -->
+    <h2>📌 说明 · 信息分类</h2>
+    <div style="display: flex; flex-wrap: wrap; gap: 1.2rem; margin-bottom: 1rem;">
+        <div style="flex: 1 1 200px; background: #f8f4ee; padding: 0.8rem 1rem; border-radius: 12px;">
+            <strong style="color:#6b5c4b;">常见术语</strong><br>
+            <span style="font-size:0.9rem; color:#4f463b;">如「平码」「特码」「生肖」等基础概念，是理解游戏框架的第一步。</span>
+        </div>
+        <div style="flex: 1 1 200px; background: #f8f4ee; padding: 0.8rem 1rem; border-radius: 12px;">
+            <strong style="color:#6b5c4b;">历史数据</strong><br>
+            <span style="font-size:0.9rem; color:#4f463b;">不少爱好者会整理开彩号码的频率与走势，作为个人参考。</span>
+        </div>
+        <div style="flex: 1 1 200px; background: #f8f4ee; padding: 0.8rem 1rem; border-radius: 12px;">
+            <strong style="color:#6b5c4b;">文化背景</strong><br>
+            <span style="font-size:0.9rem; color:#4f463b;">6合彩在部分地区与民间节庆、娱乐习惯有所关联。</span>
+        </div>
+    </div>
+
+    <!-- 提示区：提示框 + 引用块 -->
+    <div class="tip-block">
+        <div class="tip-title">📎 资料使用提示</div>
+        <p style="margin-bottom: 0.2rem;">信息索引的目的在于帮助用户形成独立判断。任何形式的数字游戏都应基于个人认知与风险意识，请勿以投机心态参与。建议将资料作为文化或统计现象来了解。</p>
+    </div>
+
+    <div class="insight-box">
+        <strong>◈ 一种视角：</strong> 在信息充裕的环境里，整理和对比不同来源的记录，往往比单一听信更有助于理解游戏的不确定性。这也是知识库式索引的价值所在。
+    </div>
+
+    <!-- 相关信息区 -->
+    <h2>📂 相关信息</h2>
+    <ul class="related-list">
+        <li>民间对「6合彩」的称呼在不同地区略有差异，但核心玩法类似。</li>
+        <li>部分资料网站会提供历史期数、号码统计以及生肖对应表，便于查阅。</li>
+        <li>理性参与者更关注规则透明与信息对称，而非短期结果。</li>
+        <li>文化层面的记录显示，类似数字博弈在世界各地都有渊源。</li>
+        <li>建议首次接触者先从规则说明与术语表开始，再逐步深入数据。</li>
+    </ul>
+
+    <!-- FAQ 摘要 -->
+    <h3>❓ 常见问题摘要</h3>
+    <div class="faq-mini">
+        <div class="faq-item">
+            <div class="q">Q: 如何理解“特码”与“平码”？</div>
+            <div class="a">特码指单独开出的一个特别号码，平码是其余六个普通号码。不同玩法组合各有对应。</div>
+        </div>
+        <div class="faq-item">
+            <div class="q">Q: 历史数据有参考意义吗？</div>
+            <div class="a">数据可以反映过去的频率分布，但无法预测未来。建议仅作观察和统计练习，而非决策依据。</div>
+        </div>
+        <div class="faq-item">
+            <div class="q">Q: 知识库通常包含哪些模块？</div>
+            <div class="a">一般包括：术语定义、规则说明、历史记录、生肖与数字对照、常见误区等。</div>
+        </div>
+        <div class="faq-item">
+            <div class="q">Q: 学习这类信息需要注意什么？</div>
+            <div class="a">保持开放但审慎的态度，不轻信“规律”或“内幕”，以资料本身的逻辑为准。</div>
+        </div>
+    </div>
+
+    <hr>
+
+    <!-- 温和收束 + 链接自然嵌在句子中 -->
+    <p style="font-size: 0.98rem; margin-top: 0.5rem;">
+        如果您希望进一步浏览更完整的术语集、历史表格或相关讨论，可以前往对应的资料站参考。例如，<a href="https://m-6h.com">6合彩</a>的相关索引页面整理了常见的分类信息，供您按需查阅。本页仅作索引示例，不构成任何形式的使用建议。
+    </p>
+
+    <div class="footnote">
+        — 索引页 · 资料整理  — <br>
+        <span style="font-size:0.75rem; color:#b3a798;">最后更新：2025 · 版本 0.9</span>
+    </div>
+
+</div>
+</body>
+</html>
