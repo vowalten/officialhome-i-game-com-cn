@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.5, user-scalable=yes">
+  <title>彩经网 · 日常数据与对照参考</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+      background: #f4f9fc;
+      color: #1e2f3d;
+      line-height: 1.6;
+      padding: 1.5rem 1rem 3rem;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .page {
+      max-width: 760px;
+      width: 100%;
+    }
+
+    /* 标题区 / hero 轻量处理 */
+    .hero {
+      margin-bottom: 2rem;
+      padding: 2rem 1.2rem 1.8rem;
+      background: linear-gradient(145deg, #d9eae9 0%, #e0f0ef 100%);
+      border-radius: 28px 28px 20px 20px;
+      box-shadow: 0 6px 18px rgba(30, 70, 80, 0.06);
+      text-align: left;
+    }
+    .hero h1 {
+      font-size: 2.1rem;
+      font-weight: 500;
+      letter-spacing: -0.01em;
+      color: #0b3a41;
+      margin-bottom: 0.4rem;
+    }
+    .hero .sub {
+      font-size: 1rem;
+      color: #2d5b62;
+      border-left: 4px solid #3b8c8c;
+      padding-left: 0.8rem;
+      margin-top: 0.3rem;
+      font-weight: 380;
+    }
+    .hero .sub strong {
+      font-weight: 500;
+      color: #0a4a4f;
+    }
+    .hero .tagline {
+      display: inline-block;
+      margin-top: 0.9rem;
+      background: #ffffffc0;
+      backdrop-filter: blur(2px);
+      padding: 0.3rem 1.1rem;
+      border-radius: 40px;
+      font-size: 0.85rem;
+      color: #1b575c;
+      letter-spacing: 0.2px;
+      border: 1px solid #b6d3d1;
+    }
+
+    /* 卡片网格 */
+    .grid-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+      margin: 1.8rem 0 2rem;
+    }
+    .card {
+      background: white;
+      border-radius: 22px;
+      padding: 1.3rem 1rem 1.1rem;
+      box-shadow: 0 4px 12px rgba(30, 60, 70, 0.05);
+      transition: transform 0.1s ease;
+      border: 1px solid #d9e7e9;
+    }
+    .card:hover {
+      transform: translateY(-2px);
+      border-color: #9cc9c9;
+    }
+    .card h3 {
+      font-size: 1.05rem;
+      font-weight: 500;
+      color: #0f4b50;
+      margin-bottom: 0.4rem;
+      display: flex;
+      align-items: center;
+      gap: 0.3rem;
+    }
+    .card h3 i {
+      font-style: normal;
+      background: #cae2e1;
+      border-radius: 40%;
+      padding: 0 0.3rem;
+      font-size: 0.8rem;
+      color: #1d6565;
+    }
+    .card p {
+      font-size: 0.92rem;
+      color: #2e4a50;
+      margin-bottom: 0.2rem;
+    }
+    .card .small-note {
+      display: block;
+      font-size: 0.78rem;
+      color: #5b7e7e;
+      margin-top: 0.3rem;
+      border-top: 1px dashed #d0e3e2;
+      padding-top: 0.15rem;
+    }
+
+    /* 长段落区 */
+    .essay-block {
+      background: #ffffffea;
+      backdrop-filter: blur(2px);
+      padding: 1.5rem 1.3rem;
+      border-radius: 28px;
+      margin: 1.5rem 0 1.8rem;
+      box-shadow: 0 2px 12px rgba(40, 80, 80, 0.03);
+    }
+    .essay-block p {
+      margin-bottom: 0.9rem;
+      font-size: 0.96rem;
+    }
+    .essay-block p:last-child {
+      margin-bottom: 0;
+    }
+    .inset-link {
+      color: #0a6b6b;
+      font-weight: 450;
+      text-decoration: none;
+      border-bottom: 1px dotted #52a0a0;
+      transition: border 0.2s;
+    }
+    .inset-link:hover {
+      border-bottom: 2px solid #126f6f;
+    }
+
+    /* 使用场景/提示 混合卡片 */
+    .tip-card {
+      background: #e2f1f0;
+      border-radius: 24px;
+      padding: 1.3rem 1.3rem 1rem;
+      margin: 1.8rem 0;
+      border-left: 4px solid #399494;
+    }
+    .tip-card h4 {
+      font-weight: 500;
+      color: #023b3b;
+      font-size: 1rem;
+      margin-bottom: 0.4rem;
+    }
+    .tip-card ul {
+      list-style: none;
+      padding-left: 0.2rem;
+    }
+    .tip-card li {
+      position: relative;
+      padding-left: 1.2rem;
+      margin-bottom: 0.4rem;
+      font-size: 0.92rem;
+      color: #1a4a4a;
+    }
+    .tip-card li::before {
+      content: "·";
+      position: absolute;
+      left: 0.1rem;
+      color: #1f7a7a;
+      font-weight: bold;
+    }
+
+    /* FAQ 摘要 简约 */
+    .faq-mini {
+      margin: 1.8rem 0 2.2rem;
+    }
+    .faq-mini details {
+      background: white;
+      border-radius: 30px;
+      padding: 0.6rem 1.1rem;
+      margin-bottom: 0.6rem;
+      border: 1px solid #d0e2e2;
+      transition: 0.15s;
+    }
+    .faq-mini details[open] {
+      border-color: #5fa8a8;
+      background: #f7fcfc;
+    }
+    .faq-mini summary {
+      font-weight: 450;
+      color: #134d4d;
+      cursor: pointer;
+      list-style: none;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .faq-mini summary::after {
+      content: "▾";
+      color: #418585;
+      font-size: 0.8rem;
+      margin-left: 0.4rem;
+    }
+    .faq-mini details[open] summary::after {
+      content: "▴";
+    }
+    .faq-mini .faq-answer {
+      padding: 0.4rem 0.1rem 0.2rem;
+      font-size: 0.9rem;
+      color: #1c4949;
+      border-top: 1px dashed #bdd5d4;
+      margin-top: 0.2rem;
+    }
+
+    /* 链接包装 + 脚注 */
+    .sentence-link-area {
+      margin: 1.2rem 0 0.5rem;
+      padding: 0.6rem 0.8rem;
+      background: #eef6f5;
+      border-radius: 60px;
+      text-align: center;
+      font-size: 0.93rem;
+      color: #1e4a4a;
+    }
+    .sentence-link-area a {
+      color: #026161;
+      font-weight: 480;
+      text-decoration: none;
+      border-bottom: 1px solid #3f8686;
+      transition: 0.2s;
+    }
+    .sentence-link-area a:hover {
+      border-bottom: 2px solid #0b5757;
+    }
+
+    .footer-note {
+      margin-top: 2.2rem;
+      font-size: 0.75rem;
+      color: #6b8b8b;
+      text-align: center;
+      border-top: 1px solid #d5e7e7;
+      padding-top: 1rem;
+      letter-spacing: 0.01em;
+    }
+
+    /* 移动端优化 */
+    @media (max-width: 520px) {
+      .grid-2 {
+        grid-template-columns: 1fr;
+        gap: 0.9rem;
+      }
+      .hero h1 {
+        font-size: 1.7rem;
+      }
+      .hero {
+        padding: 1.5rem 0.9rem;
+      }
+      .essay-block {
+        padding: 1.2rem 0.9rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+
+    <!-- hero 轻量叙述 -->
+    <div class="hero">
+      <h1>彩经网 · 日常对照</h1>
+      <div class="sub">从查询到延伸阅读，一个<strong>平稳的参考端</strong></div>
+      <div class="tagline">数据与习惯 · 不渲染 不追赶</div>
+    </div>
+
+    <!-- 网格卡片：亮点 + 使用建议 -->
+    <div class="grid-2">
+      <div class="card">
+        <h3>📋 摘要 <i>✦</i></h3>
+        <p>汇集常见分类与数值对照，供日常浏览、比对或简单回溯。不强调即时性，更侧重结构化呈现。</p>
+        <span class="small-note">适用习惯型查阅</span>
+      </div>
+      <div class="card">
+        <h3>🧩 亮点 <i>✦</i></h3>
+        <p>栏目区分清晰，减少跳转层级。页面轻、响应快，适合碎片时间扫读或横向参考。</p>
+        <span class="small-note">无弹窗干扰</span>
+      </div>
+      <div class="card">
+        <h3>🔹 使用建议 <i>✦</i></h3>
+        <p>可将其当作信息索引页——先看分类，再按需深入。尤其适合在需要横向对比时打开。</p>
+        <span class="small-note">搭配浏览器标签分组更顺手</span>
+      </div>
+      <div class="card">
+        <h3>🪶 可信说明 <i>✦</i></h3>
+        <p>内容来源基于公开整理与历史资料聚合。保持克制，不提供预测或保证，请结合自身判断。</p>
+        <span class="small-note">仅作一般性参考</span>
+      </div>
+    </div>
+
+    <!-- 叙述段：日常查询与对照角度 -->
+    <div class="essay-block">
+      <p>不少人习惯在零碎时间里翻一翻数值、看看分类条目，或是将不同日期的数据并排扫一眼。这种日常查询往往不需要密集推送，也不需要过多修饰——它更像一种随手翻阅的动作。在<a href="https://official-cjw.com" class="inset-link">彩经网</a>上，页面结构偏向静态陈列，减少了不必要的动效，让阅读节奏可以由自己控制。</p>
+      <p>从延伸阅读的角度看，一个稳定的信息锚点比频繁刷新的界面更有用。比如，某个分类下的历史对照、条目排列的细微差异，常常在横向对比时才显现价值。与其追逐实时跳动，不如偶尔静下来梳理一下自己关注的范围——这时候，一个干净、克制的页面反而更合适。</p>
+      <p>当然，任何数据类站点都只是工具。使用时的习惯、筛选信息的尺度，始终取决于个人。这里不制造紧迫感，也不暗示任何“必看”内容，呈现即完成。</p>
+    </div>
+
+    <!-- 场景提示 卡片 -->
+    <div class="tip-card">
+      <h4>📌 适合这样用</h4>
+      <ul>
+        <li>打开浏览器标签，作为当天浏览的固定对照页</li>
+        <li>将自己关心的分类条目与以往记录做简单并列</li>
+        <li>在需要快速浏览分类结构时，代替搜索或零散笔记</li>
+        <li>把链接放在书签文件夹里，需要时直接点开，无需反复登录</li>
+      </ul>
+    </div>
+
+    <!-- FAQ 摘要 (两个常见问题) -->
+    <div class="faq-mini">
+      <details>
+        <summary>这个网站更新频率如何？</summary>
+        <div class="faq-answer">以常规维护节奏为准，阶段性整理分类与对照数据。不追求秒级刷新，更倾向稳定的快照式更新。具体可随时浏览页面标注的日期（如有）。</div>
+      </details>
+      <details>
+        <summary>是否需要注册或下载？</summary>
+        <div class="faq-answer">完全不需要。所有内容均以网页形式直接呈现，无需创建账户或安装额外应用。打开即用，关闭即走。</div>
+      </details>
+    </div>
+
+    <!-- 句子内嵌链接 (严格文本等于「彩经网」) -->
+    <div class="sentence-link-area">
+      如果你正在寻找一个风格沉静、没有横幅干扰的信息页面，可以试试将
+      <a href="https://official-cjw.com">彩经网</a>
+      添加为书签，偶尔翻开，当成一种安静的阅读背景。
+    </div>
+
+    <!-- 极简脚注 -->
+    <div class="footer-note">
+      页面仅作一般性介绍 · 所有内容仅供参考
+    </div>
+
+  </div>
+</body>
+</html>
