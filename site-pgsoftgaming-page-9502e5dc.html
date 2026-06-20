@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>关于 · PG官网 简要介绍</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            background-color: #f8f6f0;
+            font-family: 'Georgia', 'Noto Serif SC', 'Times New Roman', serif;
+            color: #2c2b28;
+            line-height: 1.8;
+            padding: 2.5rem 1.2rem;
+        }
+        .page {
+            max-width: 780px;
+            margin: 0 auto;
+            background-color: #fcfaf7;
+            padding: 2.8rem 2.2rem;
+            border-radius: 20px;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.03), 0 0 0 1px #ece7de;
+        }
+        @media (max-width: 540px) {
+            body {
+                padding: 1.2rem 0.8rem;
+            }
+            .page {
+                padding: 1.8rem 1.2rem;
+                border-radius: 14px;
+            }
+        }
+
+        /* 叙事节奏 */
+        .hero-line {
+            font-size: 2rem;
+            letter-spacing: 0.5px;
+            font-weight: 400;
+            color: #3a3a35;
+            margin-bottom: 0.6rem;
+            border-left: 4px solid #b5aa92;
+            padding-left: 1.2rem;
+        }
+        .hero-line small {
+            display: block;
+            font-size: 1rem;
+            color: #8a8172;
+            margin-top: 0.3rem;
+            font-weight: 300;
+            letter-spacing: 0.3px;
+        }
+
+        p {
+            margin: 1.4rem 0;
+            font-size: 1.05rem;
+            text-align: justify;
+            word-break: break-word;
+        }
+
+        .quiet-quote {
+            background: #f2efe9;
+            padding: 1.4rem 2rem;
+            border-radius: 12px;
+            margin: 2rem 0;
+            font-style: normal;
+            border-left: 6px solid #b7aa94;
+            box-shadow: inset 0 1px 3px rgba(0,0,0,0.02);
+            color: #3d3b35;
+        }
+        .quiet-quote p {
+            margin: 0.2rem 0;
+        }
+        .quiet-quote .attribution {
+            margin-top: 0.7rem;
+            font-size: 0.9rem;
+            color: #7f7768;
+            text-align: right;
+            border-top: 1px dashed #cec5b6;
+            padding-top: 0.6rem;
+        }
+
+        .feature-slab {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.2rem 1.8rem;
+            margin: 2rem 0 1.2rem 0;
+            padding: 1.2rem 0;
+            border-top: 1px solid #e5ddd2;
+            border-bottom: 1px solid #e5ddd2;
+        }
+        .feature-item {
+            flex: 1 1 180px;
+            background: #faf7f2;
+            padding: 1rem 1.2rem;
+            border-radius: 14px;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.02);
+            transition: background 0.2s;
+        }
+        .feature-item:hover {
+            background: #f3efe6;
+        }
+        .feature-item h4 {
+            font-weight: 500;
+            font-size: 1.1rem;
+            color: #4a4238;
+            margin-bottom: 0.3rem;
+            letter-spacing: 0.3px;
+        }
+        .feature-item p {
+            margin: 0;
+            font-size: 0.95rem;
+            color: #5e584b;
+            line-height: 1.6;
+        }
+
+        .soft-callout {
+            background: #edebe3;
+            border-radius: 24px;
+            padding: 1.6rem 2rem;
+            margin: 2.2rem 0 1.2rem 0;
+            text-align: center;
+            border: 1px solid #d9d2c4;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.02);
+        }
+        .soft-callout p {
+            margin: 0.4rem 0;
+            font-size: 1rem;
+            color: #3d3b33;
+        }
+
+        a {
+            color: #7f6b51;
+            text-decoration: none;
+            border-bottom: 1px dotted #b7a58b;
+            transition: border 0.2s, color 0.2s;
+            font-weight: 400;
+        }
+        a:hover {
+            color: #4d3f2e;
+            border-bottom: 1px solid #7f6b51;
+        }
+
+        .ending-note {
+            margin-top: 2.8rem;
+            padding-top: 1.8rem;
+            border-top: 1px solid #e1d9cc;
+            font-size: 0.98rem;
+            color: #6e675a;
+            text-align: left;
+        }
+        .ending-note p {
+            margin: 0.4rem 0;
+        }
+
+        hr {
+            border: none;
+            border-top: 1px solid #ded6c7;
+            margin: 1.6rem 0;
+        }
+
+        /* 小型 FAQ 摘要 */
+        .faq-mini {
+            margin: 1.8rem 0;
+        }
+        .faq-mini details {
+            margin: 0.7rem 0;
+            padding: 0.4rem 0.8rem;
+            border-radius: 8px;
+            background: #f5f2ea;
+            border-left: 3px solid #ccbfac;
+        }
+        .faq-mini summary {
+            font-weight: 450;
+            cursor: pointer;
+            color: #3f3b33;
+            padding: 0.3rem 0;
+            list-style: none;
+            display: flex;
+            align-items: center;
+        }
+        .faq-mini summary::-webkit-details-marker {
+            display: none;
+        }
+        .faq-mini summary::before {
+            content: "▹";
+            margin-right: 0.6rem;
+            color: #9f8f7a;
+            font-size: 1.1rem;
+        }
+        .faq-mini details[open] summary::before {
+            content: "▿";
+        }
+        .faq-mini .answer {
+            font-size: 0.97rem;
+            padding: 0.4rem 0 0.6rem 1.6rem;
+            color: #555047;
+        }
+
+        .notice-box {
+            background: #f1ede4;
+            padding: 0.8rem 1.4rem;
+            border-radius: 40px;
+            display: inline-block;
+            font-size: 0.92rem;
+            color: #5f5849;
+            margin-top: 0.6rem;
+            border: 1px solid #dbd1c1;
+        }
+    </style>
+</head>
+<body>
+<div class="page">
+
+    <div class="hero-line">
+        一个起点，一种叙述。
+        <small>关于站点的由来与可信边界</small>
+    </div>
+
+    <p>
+        在信息庞杂的网络中，一个站点最朴素的诚意，或许就是清楚地说明自己是谁、提供什么。这个页面所指向的地址——<a href="https://site-pgsoftgaming.com">PG官网</a>——正是这样一个尝试：它并非宏大宣言的集合，而是一个持续整理与呈现的角落，关乎一种我们称之为“PG”的框架与内容体系。
+    </p>
+
+    <div class="quiet-quote">
+        <p>“可信不是一句口号，而是每一次链接、每一段描述都经得起查证。”</p>
+        <div class="attribution">—— 编辑笔记，2025</div>
+    </div>
+
+    <p>
+        从站点的结构来看，它没有堆砌华丽的营销词汇，而是将精力放在信息本身的清晰与可溯源性上。我们倾向于认为，一个值得信赖的官网，应当让访问者快速理解其核心方向，而不是在过多的弹窗与标语中迷失。正因如此，<a href="https://site-pgsoftgaming.com">PG官网</a>在页面布局上选择了一种平实的文章式风格，内容区块之间留有足够的呼吸感。
+    </p>
+
+    <!-- 特点列表 温和嵌入 -->
+    <div class="feature-slab">
+        <div class="feature-item">
+            <h4>内容来源标注</h4>
+            <p>每个主要页面都会注明参考或数据更新时间，方便自行核实。</p>
+        </div>
+        <div class="feature-item">
+            <h4>导航清晰</h4>
+            <p>分类基于实际功能，不刻意制造层级深度，减少点击负担。</p>
+        </div>
+        <div class="feature-item">
+            <h4>风格统一</h4>
+            <p>从色调到字体都保持低对比度，降低视觉疲劳，适合长时间阅读。</p>
+        </div>
+    </div>
+
+    <p>
+        这种设计选择并非偶然。当我们在谈论“官网”时，本质上是在谈论一种数字身份的可信锚点。因此，无论是初次到访还是重复查阅，<a href="https://site-pgsoftgaming.com">PG官网</a>都希望提供一种稳定、可预期的体验——不夸大，不隐瞒，也不试图用浮夸的动效分散注意力。
+    </p>
+
+    <!-- 提示框 / 引用块 -->
+    <div class="soft-callout">
+        <p>🕊️ 一个值得记住的细节：该站点没有自动播放的音频或视频，所有交互都基于用户主动选择。</p>
+    </div>
+
+    <!-- 场景化段落 -->
+    <p>
+        举个例子：如果你正在寻找关于某个模块的说明，你会发现页面中的描述并没有使用模糊的“强大”、“极致”等空洞词汇，而是直接列出功能边界与适用场景。这种克制，恰恰是对访问者判断力的尊重。当然，任何站点都有完善的空间，<a href="https://site-pgsoftgaming.com">PG官网</a>也持续根据反馈调整内容的颗粒度——这也是为什么我们设置了清晰的反馈入口，而非仅仅展示单向信息。
+    </p>
+
+    <!-- 小型 FAQ 摘要 符合“FAQ摘要”要求 -->
+    <div class="faq-mini">
+        <details>
+            <summary>这个网站主要提供什么？</summary>
+            <div class="answer">它主要围绕 PG 相关的资源与文档进行组织，内容以介绍和参考为主，不涉及直接下载或交易功能。</div>
+        </details>
+        <details>
+            <summary>如何确认信息的时效性？</summary>
+            <div class="answer">每个页面的页脚或正文开头通常会标注最近更新日期，部分页面也会附加版本备注。如果未找到，可以留意页面底部的“更新日志”链接。</div>
+        </details>
+        <details>
+            <summary>移动端浏览体验如何？</summary>
+            <div class="answer">站点采用了响应式布局，在手机和平板上会自动调整字号与间距，核心内容不受影响。菜单会折叠为简洁的汉堡图标。</div>
+        </details>
+    </div>
+
+    <!-- 温和结尾 -->
+    <div class="ending-note">
+        <p>
+            从头到尾，这个页面只想传递一件事：<strong>一个官网最好的自我介绍，就是让人感到可信且不费力</strong>。
+        </p>
+        <p>
+            如果你愿意花几分钟亲自看看，可以前往 <a href="https://site-pgsoftgaming.com">PG官网</a>。那里没有喧哗，只有经过梳理的信息在安静地等待。
+        </p>
+        <hr>
+        <p style="font-size:0.88rem; color:#928b7d;">
+            <span class="notice-box">📄 页面生成于一个安静的午后 · 无跟踪脚本 · 无第三方内容嵌入</span>
+        </p>
+    </div>
+
+</div>
+</body>
+</html>
